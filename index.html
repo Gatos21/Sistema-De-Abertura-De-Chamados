@@ -967,6 +967,7 @@
             <input type="text" id="filterDateRange" placeholder="Selecione o intervalo de datas">
             <button onclick="applyFilters()">Aplicar Filtros</button>
             <button onclick="downloadExcel()">Download Excel</button>
+            <button onclick="clearDatabase()">Limpar Banco de Dados</button>
 
         <table id="databaseTable">
             <thead>
@@ -1007,6 +1008,14 @@
         let wb = XLSX.utils.table_to_book(table, {sheet: "Sheet JS"});
         XLSX.writeFile(wb, 'Chamados.xlsx');
     }
+
+function clearDatabase() {
+    if (confirm('Tem certeza que deseja limpar o banco de dados?')) {
+        database = [];
+        localStorage.setItem('ticketDatabase', JSON.stringify(database));
+        updateDatabaseTable();
+    }
+}
 
 
 
